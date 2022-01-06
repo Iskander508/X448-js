@@ -4,10 +4,6 @@ function fromNumber(x: number): BigInteger {
   return new BigInteger(x.toString(10));
 }
 
-function toNumber(num: BigInteger): number {
-  return num.intValue();
-}
-
 const N0 = BigInteger.ZERO;
 const N1 = BigInteger.ONE;
 const N2 = fromNumber(2);
@@ -15,10 +11,6 @@ const N3 = fromNumber(3);
 const N5 = fromNumber(5);
 const N128 = fromNumber(128);
 const N255 = fromNumber(255);
-
-function range(length: number) {
-  return Array.from({ length }, (_, i) => i);
-}
 
 function sqr(num: BigInteger) {
   return num.multiply(num);
@@ -37,9 +29,7 @@ function cswap(
   x_3: BigInteger,
 ): [BigInteger, BigInteger] {
   const dummy = swap.multiply(x_2.subtract(x_3)).mod(P);
-  x_2 = x_2.subtract(dummy).mod(P);
-  x_3 = x_3.add(dummy).mod(P);
-  return [x_2, x_3];
+  return [x_2.subtract(dummy).mod(P), x_3.add(dummy).mod(P)];
 }
 
 function X448(k: BigInteger, u: BigInteger): BigInteger {
@@ -50,7 +40,7 @@ function X448(k: BigInteger, u: BigInteger): BigInteger {
   let z_3 = N1;
   let swap = N0;
 
-  for (const t of range(448).reverse()) {
+  for (let t = 448 - 1; t >= 0; --t) {
     const k_t = k.shiftRight(t).and(N1);
     swap = swap.xor(k_t);
     {
@@ -109,7 +99,10 @@ function unpack(s: number[]): BigInteger {
 
 function pack(n: BigInteger): number[] {
   return Array.from({ length: 56 }, (_, i) =>
-    toNumber(n.shiftRight(8 * i).and(N255)),
+    n
+      .shiftRight(8 * i)
+      .and(N255)
+      .intValue(),
   );
 }
 
