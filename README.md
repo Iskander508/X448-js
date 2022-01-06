@@ -1,5 +1,7 @@
-# X448-js [![GitHub license](https://img.shields.io/github/license/Iskander508/X448-js?style=flat)](https://github.com/Iskander508/X448-js/blob/master/LICENSE) [![Tests](https://github.com/Iskander508/X448-js/workflows/CI/badge.svg)](https://github.com/Iskander508/X448-js/actions) ![npm](https://img.shields.io/npm/v/x448-js) [![Coverage Status][coveralls-img]][coveralls-url] [![Monthly Downloads][downloads-img]][downloads-url]
+# X448-js [![GitHub license](https://img.shields.io/github/license/Iskander508/X448-js?style=flat)](https://github.com/Iskander508/X448-js/blob/master/LICENSE) [![Tests](https://github.com/Iskander508/X448-js/workflows/CI/badge.svg)](https://github.com/Iskander508/X448-js/actions) [![npm version][npm-img]][npm-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Monthly Downloads][downloads-img]][downloads-url]
 
+[npm-url]: https://www.npmjs.com/package/x448-js
+[npm-img]: https://img.shields.io/npm/v/x448-js
 [coveralls-url]: https://coveralls.io/github/Iskander508/X448-js?branch=master
 [coveralls-img]: https://coveralls.io/repos/Iskander508/X448-js/badge.svg?branch=master&service=github
 [downloads-url]: https://www.npmjs.com/package/x448-js
