@@ -1,6 +1,6 @@
 {
   "name": "x448-js",
-  "version": "0.0.0-development",
+  "version": "1.0.1",
   "private": false,
   "description": "Pure JS/TS library with X448 curve for ECDH",
   "keywords": [

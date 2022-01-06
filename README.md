@@ -20,7 +20,7 @@ or `yarn`:
 Then include it in your code:
 
 ```ts
-    import { getPublicKey, getSharedSecret } as from "x448-js";
+import { getPublicKey, getSharedSecret } from "x448-js";
 ```
 
 ## Usage
