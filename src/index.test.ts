@@ -18,7 +18,7 @@ describe("X448", () => {
     expect(k_ab).toEqual(k_ba);
   });
 
-  // https://datatracker.ietf.org/doc/html/rfc7748#section-6.2
+  // https://tools.ietf.org/html/rfc7748#section-6.2
   it("matches example from RFC", () => {
     const a_priv = Array.from(
       Buffer.from(
