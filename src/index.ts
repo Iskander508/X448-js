@@ -160,5 +160,15 @@ export function getSharedSecret(
     throw new Error(`Invalid Curve448 private key (len=${privateKey.length})`);
   }
 
-  return multscalar(Array.from(privateKey), Array.from(publicKey));
+  const secret = multscalar(Array.from(privateKey), Array.from(publicKey));
+
+  // https://tools.ietf.org/html/rfc7748#section-6.2
+  // As with X25519, both sides MAY check, without leaking extra
+  //  information about the value of K, whether the resulting shared K is
+  //  the all-zero value and abort if so.
+  if (!secret.some(x => x)) {
+    throw new Error("Invalid Curve448 public key");
+  }
+
+  return secret;
 }

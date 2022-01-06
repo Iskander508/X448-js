@@ -80,4 +80,13 @@ describe("X448", () => {
     expect(() => getSharedSecret(random(56), random(55))).toThrow();
     expect(() => getSharedSecret(random(55), random(56))).toThrow();
   });
+
+  // https://tools.ietf.org/html/rfc7748#section-6.2
+  // As with X25519, both sides MAY check, without leaking extra
+  //  information about the value of K, whether the resulting shared K is
+  //  the all-zero value and abort if so.
+  it("fails with invalid public key", () => {
+    const invalidPublicKey = Array.from({ length: 56 }, () => 0);
+    expect(() => getSharedSecret(random(56), invalidPublicKey)).toThrow();
+  });
 });
