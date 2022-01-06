@@ -6,6 +6,9 @@
 /dist/
 TODO
 
+# test
+/coverage/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
