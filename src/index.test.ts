@@ -1,11 +1,11 @@
 import { getPublicKey, getSharedSecret } from "./";
 
+function random(length: number): number[] {
+  return Array.from({ length }, () => Math.floor(Math.random() * 256));
+}
+
 describe("X448", () => {
   it("matches shared secret for 2 generated key pairs", () => {
-    function random(length: number): number[] {
-      return Array.from({ length }, () => Math.floor(Math.random() * 256));
-    }
-
     const a_priv = random(56);
     const b_priv = random(56);
 
@@ -65,5 +65,19 @@ describe("X448", () => {
         ),
       ),
     );
+  });
+
+  it("fails with missing input", () => {
+    const missing = (null as unknown) as Buffer;
+    expect(() => getPublicKey(missing)).toThrow();
+    expect(() => getSharedSecret(missing, random(56))).toThrow();
+    expect(() => getSharedSecret(random(56), missing)).toThrow();
+  });
+
+  it("fails with invalid size of input", () => {
+    expect(() => getPublicKey(random(57))).toThrow();
+    expect(() => getPublicKey(random(55))).toThrow();
+    expect(() => getSharedSecret(random(56), random(55))).toThrow();
+    expect(() => getSharedSecret(random(55), random(56))).toThrow();
   });
 });

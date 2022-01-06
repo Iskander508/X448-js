@@ -1,4 +1,6 @@
 name: CI
+env:
+  CI: true
 
 on:
   push:
@@ -33,7 +35,11 @@ jobs:
       - name: Yarn install
         run: yarn --frozen-lockfile
       - name: Test
-        run: yarn test
+        run: yarn test --coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
         if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/next')
         run: yarn semantic-release
